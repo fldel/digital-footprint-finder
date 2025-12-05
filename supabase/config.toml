@@ -1,1 +1,4 @@
 project_id = "kypwjxexfxxakseumvml"
+
+[functions.osint-search]
+verify_jwt = false
