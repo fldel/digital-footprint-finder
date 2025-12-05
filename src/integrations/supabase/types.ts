@@ -14,13 +14,143 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          credits_remaining: number
+          email: string | null
+          full_name: string | null
+          id: string
+          plan: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          credits_remaining?: number
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          plan?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          credits_remaining?: number
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          plan?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      search_results: {
+        Row: {
+          bio: string | null
+          confidence_score: number | null
+          created_at: string
+          display_name: string | null
+          followers_count: number | null
+          id: string
+          location: string | null
+          metadata: Json | null
+          platform: string | null
+          posts_count: number | null
+          profile_image_url: string | null
+          profile_url: string | null
+          result_type: string
+          search_id: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          bio?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          display_name?: string | null
+          followers_count?: number | null
+          id?: string
+          location?: string | null
+          metadata?: Json | null
+          platform?: string | null
+          posts_count?: number | null
+          profile_image_url?: string | null
+          profile_url?: string | null
+          result_type: string
+          search_id: string
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          bio?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          display_name?: string | null
+          followers_count?: number | null
+          id?: string
+          location?: string | null
+          metadata?: Json | null
+          platform?: string | null
+          posts_count?: number | null
+          profile_image_url?: string | null
+          profile_url?: string | null
+          result_type?: string
+          search_id?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "search_results_search_id_fkey"
+            columns: ["search_id"]
+            isOneToOne: false
+            referencedRelation: "searches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      searches: {
+        Row: {
+          created_at: string
+          id: string
+          query: string
+          query_type: string
+          results_count: number | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          query: string
+          query_type?: string
+          results_count?: number | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          query?: string
+          query_type?: string
+          results_count?: number | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      decrement_credits: { Args: { p_user_id: string }; Returns: number }
     }
     Enums: {
       [_ in never]: never
